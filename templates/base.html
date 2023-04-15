@@ -46,7 +46,7 @@
 
       .gray td {
         background-color: #ededed;
-      } 
+      }
 
       p {
         margin-bottom: 0;
@@ -65,13 +65,13 @@
   </head>
   <body>
     <div class="cover">
-      <h1 style="font-size: 14pt !important;">DIGITAL TRANSFORMATION OFFICE<br />PUSAT DATA DAN TEKNOLOGI INFORMASI</h1>
-      <div style="margin-top: 12rem;"></div>
+      <h1 style="font-size: 14pt !important">DIGITAL TRANSFORMATION OFFICE<br />PUSAT DATA DAN TEKNOLOGI INFORMASI</h1>
+      <div style="margin-top: 12rem"></div>
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Logo_of_the_Ministry_of_Health_of_the_Republic_of_Indonesia.png/1600px-Logo_of_the_Ministry_of_Health_of_the_Republic_of_Indonesia.png" style="width: 6cm" />
-      <div style="margin-top: 12rem;"></div>
+      <div style="margin-top: 12rem"></div>
       <p><u>LAPORAN KEGIATAN BULANAN</u></p>
       <p>Periode {{ month }} {{ year }}</p>
-      <div style="margin-top: 12rem;"></div>
+      <div style="margin-top: 12rem"></div>
       <p>{{ name.upper()}}</p>
       <p>{{ role }}</p>
     </div>
@@ -143,7 +143,7 @@
       {{ plan | safe }}
       <p>Demikian laporan ini saya sampaikan, atas perhatian Bapak diucapkan terima kasih.</p>
 
-      <h1 class="break" style="text-align: center;">LAMPIRAN A</h1>
+      <h1 class="break" style="text-align: center">LAMPIRAN A</h1>
       <p>Daftar Hadir dan Kegiatan {{ role }} Digital Transformation Office Pusat Data dan Teknologi Informasi Kementerian Kesehatan RI</p>
       <p>
         Nama : {{ name }}<br />
@@ -163,8 +163,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for row in attachmentA %}
-          {% if row.keterangan == "Minggu" %}
+          {% for row in attachmentA %} {% if row.keterangan == "Minggu" %}
           <tr class="gray">
             <td>{{ row.tanggal }}</td>
             <td>{{ row.kegiatan }}</td>
@@ -182,36 +181,34 @@
             <td>{{ row.selesai }}</td>
             <td>{{ row.keterangan }}</td>
           </tr>
-          {% endif %}
-          {% endfor %}
+          {% endif %} {% endfor %}
         </tbody>
       </table>
 
-      <div class="row" style="margin-top: 2rem; text-align: center; font-weight: bold;">
+      <div class="row" style="margin-top: 2rem; text-align: center; font-weight: bold">
         <div class="col">
           <p>Penyusun</p>
           <div style="margin-bottom: 6rem"></div>
-          <p>{{ name }}<br>{{ role }}</p>
+          <p>{{ name }}<br />{{ role }}</p>
         </div>
         <div class="col">
           <p>Pemeriksa</p>
           <div style="margin-bottom: 6rem"></div>
-          <p>{{ pemeriksa }}<br>{{ pemeriksa_role }}</p>
+          <p>{{ pemeriksa }}<br />{{ pemeriksa_role }}</p>
         </div>
         <div class="col">
           <p>Menyetujui</p>
           <div style="margin-bottom: 6rem"></div>
-          <p>{{ menyetujui }}<br>{{ menyetujui_role }}</p>
+          <p>{{ menyetujui }}<br />{{ menyetujui_role }}</p>
         </div>
         <div class="col">
           <p>Mengetahui</p>
           <div style="margin-bottom: 6rem"></div>
-          <p>{{ mengetahui }}<br>{{ mengetahui_role }}</p>
+          <p>{{ mengetahui }}<br />{{ mengetahui_role }}</p>
         </div>
-        
       </div>
-    
-      <h1 class="break" style="text-align: center;">LAMPIRAN B (OUTPUT PEKERJAAN)</h1>
+
+      <h1 class="break" style="text-align: center">LAMPIRAN B (OUTPUT PEKERJAAN)</h1>
     </div>
     <div class=""></div>
 

@@ -1,16 +1,13 @@
-import csv
-import io
-from mistune import html
 from flask import Flask, request, render_template
+from mistune import html
+import io
+import csv
 
 def toHTML(markdown):
     return html(markdown)
 
 def toObj(file):
-    # Get the uploaded file from the request object
-    uploaded_file = request.files[file]
-    
-    # Wrap the file object in a TextIOWrapper to convert it to text mode
+    uploaded_file = request.files[file]    
     csv_data = uploaded_file.read().decode('utf-8')
     csv_file = io.StringIO(csv_data)
 
@@ -40,7 +37,7 @@ def form():
             number = request.form['number'],
             number_date = request.form['number_date'],
             month = request.form['month'],
-            month2 = 'a',
+            month2 = request.form['month'],
             year = request.form['year'],
             scope = toHTML(request.form['scope']),
             output = toHTML(request.form['output']),
