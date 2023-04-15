@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lapbul Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" />
+    <style>
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+
+      form {
+        margin-top: 30px;
+      }
+
+      button {
+        margin-top: 10px;
+      }
+
+      footer {
+        /* position: fixed; */
+        bottom: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="mb-4">Lapbul Generator</h1>
+      <div class="application-bar">
+        <!-- Add your application bar content here, such as logo or title -->
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="input_data">Load JSON Template:</label>
+          <input type="file" class="form-control mt-3" id="fileInput" name="file" />
+        </div>
+        <div class="col-md-6">
+          <label for="input_data">Load Demo Template:</label><br />
+          <button class="btn btn-secondary mt-3" id="loadDemoBtn">Demo Template</button>
+        </div>
+      </div>
+
+      <form method="post" action="/" id="inputForm" enctype="multipart/form-data">
+        <div class="mb-4">
+          <label for="input_data">Nama:</label>
+          <input type="text" class="form-control" name="user" id="input_user" />
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="input_role">Jabatan:</label>
+            <input type="text" class="form-control" name="role" id="input_role" />
+          </div>
+          <div class="col-md-6">
+            <label for="input_type">Jenis:</label>
+            <select class="form-select" name="type" id="input_type">
+              <option value="Jasa Lainnya">Jasa Lainnya</option>
+              <option value="Konsultan Jasa">Konsultan Jasa</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="input_month">Nomor SPK:</label>
+            <input type="text" class="form-control" name="number" id="input_month" required />
+          </div>
+          <div class="col-md-6">
+            <label for="input_year">Tanggal SPK:</label>
+            <input type="text" class="form-control" name="number_date" id="input_year" required />
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="input_month">Bulan:</label>
+            <input type="text" class="form-control" name="month" id="month" pattern="^(?:Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember)$" required />
+          </div>
+          <div class="col-md-6">
+            <label for="input_year">Tahun:</label>
+            <input type="text" class="form-control" name="year" id="input_year" pattern="^\d{4}$" required />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="input_data">Ruang Lingkup:</label>
+          <textarea type="text" class="form-control" name="scope" id="input_scope" required></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="input_data">Output:</label>
+          <textarea type="text" class="form-control" name="output" id="input_output" required></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="input_data">Rencana Bulan Berikutnya:</label>
+          <textarea type="text" class="form-control" name="plan" id="input_plan" required></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="input_data">Lampiran A:</label>
+          <input type="file" class="form-control" name="attachmentA" id="input_attachmentA" />
+        </div>
+
+        <div class="mb-4">
+          <label for="input_data">Lampiran B:</label>
+          <input type="file" class="form-control" name="name" disabled />
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="input_month">Pemeriksa:</label>
+            <input type="text" class="form-control" name="pemeriksa" id="input_pemeriksa" required />
+          </div>
+          <div class="col-md-6">
+            <label for="input_year">Jabatan:</label>
+            <input type="text" class="form-control" name="pemeriksa_role" id="input_pemeriksa_role" required />
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="input_month">Menyetujui:</label>
+            <input type="text" class="form-control" name="menyetujui" id="input_menyetujui" required />
+          </div>
+          <div class="col-md-6">
+            <label for="input_year">Jabatan:</label>
+            <input type="text" class="form-control" name="menyetujui_role" id="input_menyetujui_role" required />
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label for="input_month">Mengetahui:</label>
+            <input type="text" class="form-control" name="mengetahui" id="input_mengetahui" required />
+          </div>
+          <div class="col-md-6">
+            <label for="input_year">Jabatan:</label>
+            <input type="text" class="form-control" name="mengetahui_role" id="input_mengetahui_role" required />
+          </div>
+        </div>
+
+        <!-- <div class="mb-4">
+          <label for="input_data">Nama:</label>
+          <input type="text" class="form-control" name="pemeriksa" id="input_pemeriksa" />
+        </div>
+        
+        <div class="mb-4">
+          <label for="input_data">Nama:</label>
+          <input type="text" class="form-control" name="menyetujui" id="input_menyetujui" />
+        </div>
+
+        <div class="mb-4">
+          <label for="input_data">Nama:</label>
+          <input type="text" class="form-control" name="mengetahui" id="input_mengetahui" />
+        </div> -->
+        
+      </form>
+      <input type="submit" class="btn btn-primary mt-3" form="inputForm" value="Generate Lapbul" />
+      <button class="btn btn-secondary mt-3" id="saveBtn">Save as JSON</button>
+    </div>
+    <footer>
+      <p></p>
+    </footer>
+  </body>
+  <script>
+    const form = document.getElementById("inputForm");
+    const demoData = {
+      user: "Kimi no Nawa",
+      role: "Engineer",
+      type: "Jasa Lainnya",
+      number: "BJ.XX.XX/PPK/XXXXX/XXXX",
+      number_date: "17 Februari 2023",
+      month: "April",
+      year: "2023",
+      scope: "1. abc\n2. abc\n3. abc",
+      output: "1. def\n2. def\n3. def",
+      plan: "1. ghi\n2. ghi\n3. ghi",
+    };
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      form.submit();
+    });
+
+    const download = (content, fileName, contentType) => {
+      var a = document.createElement("a");
+      var file = new Blob([content], { type: contentType });
+      a.href = URL.createObjectURL(file);
+      a.download = fileName;
+      a.click();
+    };
+
+    const loadData = (formDataJson) => {
+      const formData = new FormData(document.forms[0]);
+
+      for (const key in formDataJson) {
+        if (formDataJson.hasOwnProperty(key)) {
+          if (formData.has(key)) {
+            formData.set(key, formDataJson[key]);
+          }
+        }
+      }
+
+      for (const [key, value] of formData.entries()) {
+        const input = form.elements[key];
+        if (input) {
+          if (input.tagName === "TEXTAREA") {
+            input.textContent = value; // Set value for textarea element
+          } else {
+            input.value = value; // Set value for other form elements
+          }
+        }
+      }
+    };
+
+    const fileInput = document.getElementById("fileInput");
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        var formDataJson = {};
+        formDataJson = JSON.parse(e.target.result);
+        loadData(formDataJson);
+      };
+      reader.readAsText(file);
+    });
+
+    const demo = document.getElementById("loadDemoBtn");
+    demo.addEventListener("click", () => {
+      loadData(demoData);
+    });
+
+    const saveBtn = document.getElementById("saveBtn");
+    saveBtn.addEventListener("click", () => {
+      const formData = new FormData(form);
+      const formDataJson = {};
+      for (const [key, value] of formData.entries()) {
+        formDataJson[key] = value;
+      }
+      const formDataJsonString = JSON.stringify(formDataJson);
+
+      download(formDataJsonString, "json.txt", "text/plain");
+      // alert("Form data has been saved as JSON!");
+    });
+  </script>
+</html>

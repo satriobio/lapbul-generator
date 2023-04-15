@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lapbul</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <style>
+      @page {
+        size: legal;
+        margin: 2cm; /* optional: set margins as desired */
+      }
+      @page :header {
+        /* display: none */
+      }
+      @media print {
+        .break {
+          page-break-before: always;
+        }
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12pt !important;
+      }
+      h1 {
+        font-weight: bold;
+        font-size: 12pt !important;
+        margin-top: 2rem;
+      }
+      h2 {
+        font-weight: bold;
+        font-size: 12pt !important;
+        margin-top: 1rem;
+      }
+      p {
+        line-height: 1.5;
+      }
+      .cover {
+        text-align: center;
+      }
+      .main {
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      .gray td {
+        background-color: #ededed;
+      } 
+
+      p {
+        margin-bottom: 0;
+      }
+
+      .table td {
+        max-width: 150px; /* set the maximum width of the column */
+        white-space: normal; /* allow text to wrap */
+      }
+
+      section {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cover">
+      <h1 style="font-size: 14pt !important;">DIGITAL TRANSFORMATION OFFICE<br />PUSAT DATA DAN TEKNOLOGI INFORMASI</h1>
+      <div style="margin-top: 12rem;"></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Logo_of_the_Ministry_of_Health_of_the_Republic_of_Indonesia.png/1600px-Logo_of_the_Ministry_of_Health_of_the_Republic_of_Indonesia.png" style="width: 6cm" />
+      <div style="margin-top: 12rem;"></div>
+      <p><u>LAPORAN KEGIATAN BULANAN</u></p>
+      <p>Periode {{ month }} {{ year }}</p>
+      <div style="margin-top: 12rem;"></div>
+      <p>{{ name.upper()}}</p>
+      <p>{{ role }}</p>
+    </div>
+    <div class="main break">
+      <h1>I. GAMBARAN UMUM KONTRAK PENYEDIA</h1>
+      <p>{{ name }} selaku {{ role }} Digital Transformation Office (“Penyedia”) mulai bekerja dan telah menandatangani Surat Perjanjian dengan Nomor {{ number }} pada tanggal {{ number_date}} untuk pelaksanaan pekerjaan {{ type }} SDM Digital Transformation Office {{ role }} Pada Pusat Data dan Teknologi Informasi Kementerian Kesehatan RI).</p>
+      <p>Gambar Struktur</p>
+      <h2>1.1. Ruang Lingkup Pekerjaan</h2>
+      <p>Sesuai dengan Kerangka Acuan Kerja (KAK), {{ role }} memiliki beberapa tugas dan lingkup pekerjaan, antara lain:</p>
+      {{ scope | safe }}
+      <h2>1.2. Output Pekerjaan Sesuai Kerangka Acuan Kerja</h2>
+      <p>Output dan dokumen yang dihasilkan adalah terkait kegiatan {{ role }} pada Digital Transformation Office Pusat Data dan Teknologi Informasi Kementerian Kesehatan RI meliputi:</p>
+      {{ output | safe }}
+      <h1>II. KEGIATAN {{ role.upper() }} UNTUK BULAN {{ month.upper() }} TAHUN 2023</h1>
+      <p>Pada bulan {{ month }} Tahun {{ year }}, {{ role }} menjalankan tugas sesuai dengan lingkup pekerjaan yang diterima. Adapun beberapa kegiatan yang dilakukan selaku {{ role }}, yang terdiri dari:</p>
+      <h2>2.1 Kegiatan Utama yang Menjadi Tugas Rutin {{ role }}</h2>
+      <p>Kegiatan utama (rutin) selaku {{ role }} pada bulan {{ month }}, antara lain sebagai berikut:</p>
+
+      <table class="table table-bordered" style="margin-bottom: 0">
+        <tbody>
+          <tr>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2.2 Pertemuan-Pertemuan dalam Rangka Kegiatan Digital Transformation Office Pusat Data dan Teknologi Informasi Kementerian Kesehatan RI</h2>
+      <p>Kegiatan pertemuan (non-rutin) bulan {{ month }}, antara lain sebagai berikut:</p>
+      <table class="table table-bordered" style="margin-bottom: 0">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Agenda</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="col"></td>
+            <td scope="col"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h1>III. POSISI MAN-MONTH YANG SUDAH DIGUNAKAN</h1>
+      <p>Berikut posisi man-month atau bulan berjalan pekerjaan sebagai {{ role }} pada Digital Transformation Office Pusat Data dan Teknologi Informasi Kementerian Kesehatan RI</p>
+
+      <table class="table table-bordered" style="margin-bottom: 0">
+        <thead class="thead-light">
+          <tr>
+            {% for month in ['Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'November', 'Desember'] %}
+            <th scope="col">{{ month }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for month in ['Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'November', 'Desember'] %}
+            <td scope="col"></td>
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+
+      <h1>IV. RENCANA KEGIATAN BULAN {{ month2.upper() }} TAHUN 2023</h1>
+      <p>Sesuai agenda dan rencana kerja yang telah disusun, maka dalam bulan berikutnya, fokus kegiatan yang dilakukan oleh {{ role }} yaitu melakukan finalisasi terhadap:</p>
+      {{ plan | safe }}
+      <p>Demikian laporan ini saya sampaikan, atas perhatian Bapak diucapkan terima kasih.</p>
+
+      <h1 class="break" style="text-align: center;">LAMPIRAN A</h1>
+      <p>Daftar Hadir dan Kegiatan {{ role }} Digital Transformation Office Pusat Data dan Teknologi Informasi Kementerian Kesehatan RI</p>
+      <p>
+        Nama : {{ name }}<br />
+        Jabatan : {{ role }}<br />
+        Periode : {{ month }}
+      </p>
+
+      <table class="table table-bordered" style="margin-bottom: 0">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Tanggal</th>
+            <th scope="col">Uraian Kegiatan</th>
+            <th scope="col">Lokasi</th>
+            <th scope="col">Jam Masuk</th>
+            <th scope="col">Jam Selesai</th>
+            <th scope="col">Keterangan</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in attachmentA %}
+          {% if row.keterangan == "Minggu" %}
+          <tr class="gray">
+            <td>{{ row.tanggal }}</td>
+            <td>{{ row.kegiatan }}</td>
+            <td>{{ row.lokasi }}</td>
+            <td>{{ row.masuk }}</td>
+            <td>{{ row.selesai }}</td>
+            <td>{{ row.keterangan }}</td>
+          </tr>
+          {% else %}
+          <tr>
+            <td>{{ row.tanggal }}</td>
+            <td>{{ row.kegiatan }}</td>
+            <td>{{ row.lokasi }}</td>
+            <td>{{ row.masuk }}</td>
+            <td>{{ row.selesai }}</td>
+            <td>{{ row.keterangan }}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="row" style="margin-top: 2rem; text-align: center; font-weight: bold;">
+        <div class="col">
+          <p>Penyusun</p>
+          <div style="margin-bottom: 6rem"></div>
+          <p>{{ name }}<br>{{ role }}</p>
+        </div>
+        <div class="col">
+          <p>Pemeriksa</p>
+          <div style="margin-bottom: 6rem"></div>
+          <p>{{ pemeriksa }}<br>{{ pemeriksa_role }}</p>
+        </div>
+        <div class="col">
+          <p>Menyetujui</p>
+          <div style="margin-bottom: 6rem"></div>
+          <p>{{ menyetujui }}<br>{{ menyetujui_role }}</p>
+        </div>
+        <div class="col">
+          <p>Mengetahui</p>
+          <div style="margin-bottom: 6rem"></div>
+          <p>{{ mengetahui }}<br>{{ mengetahui_role }}</p>
+        </div>
+        
+      </div>
+    
+      <h1 class="break" style="text-align: center;">LAMPIRAN B (OUTPUT PEKERJAAN)</h1>
+    </div>
+    <div class=""></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
