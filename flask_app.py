@@ -54,5 +54,3 @@ def form():
             mengetahui_role = request.form['mengetahui_role'],
         )
     return render_template('form.html')
-
-app.run(debug=True)

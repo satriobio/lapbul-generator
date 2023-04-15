@@ -40,12 +40,12 @@
 
       <div class="row">
         <div class="col-md-6">
-          <label for="input_data">Load JSON Template:</label>
+          <label for="input_data">Load Lapbul Template (JSON):</label>
           <input type="file" class="form-control mt-3" id="fileInput" name="file" />
         </div>
         <div class="col-md-6">
           <label for="input_data">Load Demo Template:</label><br />
-          <button class="btn btn-secondary mt-3" id="loadDemoBtn">Demo Template</button>
+          <button class="btn btn-secondary mt-3" id="loadDemo">Demo Template</button>
         </div>
       </div>
 
@@ -106,67 +106,52 @@
           <textarea type="text" class="form-control" name="plan" id="input_plan" required></textarea>
         </div>
 
-        <div class="mb-4">
-          <label for="input_data">Lampiran A:</label>
-          <input type="file" class="form-control" name="attachmentA" id="input_attachmentA" />
-        </div>
-
-        <div class="mb-4">
-          <label for="input_data">Lampiran B:</label>
-          <input type="file" class="form-control" name="name" disabled />
-        </div>
-
         <div class="row mb-4">
           <div class="col-md-6">
-            <label for="input_month">Pemeriksa:</label>
+            <label for="input_pemeriksa">Pemeriksa:</label>
             <input type="text" class="form-control" name="pemeriksa" id="input_pemeriksa" required />
           </div>
           <div class="col-md-6">
-            <label for="input_year">Jabatan:</label>
+            <label for="input_pemeriksa_role">Jabatan:</label>
             <input type="text" class="form-control" name="pemeriksa_role" id="input_pemeriksa_role" required />
           </div>
         </div>
 
         <div class="row mb-4">
           <div class="col-md-6">
-            <label for="input_month">Menyetujui:</label>
+            <label for="input_menyetujui">Menyetujui:</label>
             <input type="text" class="form-control" name="menyetujui" id="input_menyetujui" required />
           </div>
           <div class="col-md-6">
-            <label for="input_year">Jabatan:</label>
+            <label for="input_menyetujui_role">Jabatan:</label>
             <input type="text" class="form-control" name="menyetujui_role" id="input_menyetujui_role" required />
           </div>
         </div>
 
         <div class="row mb-4">
           <div class="col-md-6">
-            <label for="input_month">Mengetahui:</label>
+            <label for="input_mengetahui">Mengetahui:</label>
             <input type="text" class="form-control" name="mengetahui" id="input_mengetahui" required />
           </div>
           <div class="col-md-6">
-            <label for="input_year">Jabatan:</label>
+            <label for="input_mengetahui_role">Jabatan:</label>
             <input type="text" class="form-control" name="mengetahui_role" id="input_mengetahui_role" required />
           </div>
         </div>
 
-        <!-- <div class="mb-4">
-          <label for="input_data">Nama:</label>
-          <input type="text" class="form-control" name="pemeriksa" id="input_pemeriksa" />
-        </div>
-        
         <div class="mb-4">
-          <label for="input_data">Nama:</label>
-          <input type="text" class="form-control" name="menyetujui" id="input_menyetujui" />
+          <label for="input_data">Lampiran A (<a href="#" id="downloadTemplate">CSV</a>):</label>
+          <input type="file" class="form-control" name="attachmentA" id="input_attachmentA" />
         </div>
 
         <div class="mb-4">
-          <label for="input_data">Nama:</label>
-          <input type="text" class="form-control" name="mengetahui" id="input_mengetahui" />
-        </div> -->
+          <label for="input_data">Lampiran B:</label>
+          <input type="file" class="form-control" name="a" disabled />
+        </div>
         
       </form>
       <input type="submit" class="btn btn-primary mt-3" form="inputForm" value="Generate Lapbul" />
-      <button class="btn btn-secondary mt-3" id="saveBtn">Save as JSON</button>
+      <button class="btn btn-secondary mt-3" id="downloadJSON">Save as JSON</button>
     </div>
     <footer>
       <p></p>
@@ -176,7 +161,7 @@
     const form = document.getElementById("inputForm");
     const demoData = {
       user: "Kimi no Nawa",
-      role: "Engineer",
+      role: "Data Engineer",
       type: "Jasa Lainnya",
       number: "BJ.XX.XX/PPK/XXXXX/XXXX",
       number_date: "17 Februari 2023",
@@ -185,6 +170,12 @@
       scope: "1. abc\n2. abc\n3. abc",
       output: "1. def\n2. def\n3. def",
       plan: "1. ghi\n2. ghi\n3. ghi",
+      pemeriksa: "Name",
+      pemeriksa_role: "Role",
+      menyetujui: "Name",
+      menyetujui_role: "Role",
+      mengetahui: "Name",
+      mengetahui_role: "Role"
     };
 
     form.addEventListener("submit", (e) => {
@@ -236,12 +227,20 @@
       reader.readAsText(file);
     });
 
-    const demo = document.getElementById("loadDemoBtn");
-    demo.addEventListener("click", () => {
+    const demoButton = document.getElementById("loadDemo");
+    demoButton.addEventListener("click", () => {
       loadData(demoData);
     });
 
-    const saveBtn = document.getElementById("saveBtn");
+    const templateButton = document.getElementById("downloadTemplate");
+    templateButton.addEventListener("click", (e) => {
+      e.preventDefault()
+      const columnNames = ['tanggal', 'kegiatan', 'lokasi', 'masuk', 'selesai', 'keterangan'];
+      const csvContent = columnNames.join(',') + '\n';
+      download(csvContent, "template.csv", "text/csv");
+    });
+
+    const saveButton = document.getElementById("downloadJSON");
     saveBtn.addEventListener("click", () => {
       const formData = new FormData(form);
       const formDataJson = {};
@@ -251,7 +250,6 @@
       const formDataJsonString = JSON.stringify(formDataJson);
 
       download(formDataJsonString, "json.txt", "text/plain");
-      // alert("Form data has been saved as JSON!");
     });
   </script>
 </html>
